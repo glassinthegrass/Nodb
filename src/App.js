@@ -1,3 +1,13 @@
+// State: selection
+// state: inputs/name/email/birthday/picture
+// get searchBarInput
+// post  addPerson
+// put editEmail
+// delete delEmail
+// props searchbar
+// state Selectedperson
+// map
+
 import logo from './logo.svg';
 import './App.css';
 

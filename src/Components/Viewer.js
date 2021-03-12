@@ -1,0 +1,1 @@
+//props: SelectedPerson, delEmail, nameInput,emailInput,birthdayinput,
