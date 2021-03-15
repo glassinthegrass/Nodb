@@ -1,18 +1,30 @@
 // props selection, searchbar fn
-import React from 'react';
+import React, { Component } from 'react';
 
-const SearchBar = () => {
+class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchInput: "",
+    }
+  }
+  handleInput = val => {
+    this.setState({ searchInput: val })
+
+  }
+  render() {
     return (
       <section>
         <div className="searchBar">
           <p className="searchText">Search:</p>
-          <input type="search" placeholder="Type Name Here"></input>
-            </div>
-            <div id='viewer'>
+          <input type="search" placeholder="Type Name Here">
+          </input>
+        </div>
+        <div id='viewer'>
 
-            </div>
+        </div>
       </section>
     );
+  }
 }
-
 export default SearchBar
