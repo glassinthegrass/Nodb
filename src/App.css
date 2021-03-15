@@ -36,3 +36,56 @@
     transform: rotate(360deg);
   }
 }
+
+
+.searchBar {
+  background-color: black;
+  color: pink;
+  display: inline-flex;
+  height: 3vh;
+  float: right;
+  width: 100%
+}
+
+.header {
+  background-color: coral;
+  height: 5vh;
+  float: top;
+}
+
+.searchText {
+margin-top: -1px}
+
+#viewer{
+  float:right;
+  width: 40%;
+  height: 92vh;
+  background-color: blue;
+}
+
+#selection{
+  padding: 5%;
+height:92vh;
+width: 50%;
+background-color: aqua;
+}
+
+.selectionLayer2 {
+border-radius:10px 10px 5px 5px;
+height: 25vh;
+width: 50vw;  
+background-color: aliceblue;
+}
+
+#cardHeader{
+  height: 3vh;
+  width: 50vw;
+  text-align: left;
+  background-color: purple;
+  border-radius: 8px 8px 0px 0px;
+}
+
+#cardHeaderText{
+  position: relative;
+  margin-left:10px;
+}
