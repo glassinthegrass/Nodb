@@ -20,9 +20,6 @@ class SearchBar extends Component {
           <input type="search" placeholder="Type Name Here">
           </input>
         </div>
-        <div id='viewer'>
-
-        </div>
       </section>
     );
   }

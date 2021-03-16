@@ -1,1 +1,1 @@
-//props: SelectedPerson, delEmail, nameInput,emailInput,birthdayinput,
+//props: SelectedPerson, delEmail, nameInput,emailInput,birthdayinpuut
