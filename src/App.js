@@ -1,20 +1,11 @@
-// State: selection
-// state: inputs/name/email/birthday/picture
-// get searchBarInput
-// post  addPerson
-// put editEmail
-// delete delEmail
-// props searchbar
-// state Selectedperson
-// map
-import React, { Component } from 'react';
-import axios from 'axios'
-import Header from './Components/Header.js'
-import SearchBar from './Components/SearchBar.js'
-import Selection from './Components/Selection.js'
+import React, { Component } from "react";
+import axios from "axios";
+import Header from "./Components/Header.js";
+import SearchBar from "./Components/SearchBar.js";
+import Selection from "./Components/Selection.js";
+import Viewer from "./Components/Viewer.js";
 
-import './App.css';
-
+import "./App.css";
 
 //https://pokeapi.co/api/v2/pokemon/
 
@@ -22,62 +13,72 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selected:{},
       pokemon: [],
-      single: [],
-      name: '',
-      id: '',
-      height:''
-    }
+      name: "",
+      id: "",
+      height: ""
+    };
   }
-  componentDidMount = () => {
-  axios.get("/api/pokemon")
-      .then((res) => {
-        this.setState({pokemon: res.data });
-        // console.log(this.state.pokemon)
-      })
-      .catch((err) => console.log(err));
-  }
-  addPokemon = (pokemon) => {
-    axios
-      .post("/api/pokemon/", { pokemon: pokemon })
-      .then(res => {
-        this.setState({ single: res.data });
-      })
-      .catch((err) => console.log(err));
-  }
-  editName = (id, newName) => {
-    let body = { name: newName }
-    axios
-      .put(`https://pokeapi.co/api/v2/pokemon/${id}`, body)
-      .then((res) => {
-        this.setState({ single: res.data });
-      })
-      .catch((err) => console.log(err));
-  }
-  closePerson = (id) => {
-    axios.delete(`/api/people/${id}`)
-      .then(res => {
-        this.setState({ single: [] })
-        .catch(err => console.log(err))
-    })
-  }
-  
-  render() {
+  componentDidMount() {
+    this.getPokemon()
     console.log(this.state.pokemon)
+  }
+  getPokemon = () => {
+    axios.get(`/api/pokemon`)
+      .then((res) => {
+          this.setState({ pokemon: res.data })
+        })
+      .catch(err => console.log(err))
+}
+  getSelected = () => {
+    axios
+      .get(`/api/selected`)
+      .then((res) => {
+        this.setState({ selected: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
+  editName = (id, newName) => {
+    let body = { name: newName };
+    axios
+      .put(`/api/selected/${id}`, body)
+      .then((res) => {
+        this.setState({ selected: res.data.selected });
+        this.setState({ pokemon: res.data.pokemon });
+      })
+      .catch((err) => console.log(err));
+  };
+  closePerson = () => {
+    axios.delete(`/api/selected`)
+      .then((res) => {
+        this.setState({ pokemon: res.data })
+          })
+        .catch((err) => console.log(err));  
+  };
+
+  render() {
     return (
       <div className="App">
         <Header />
         <SearchBar />
-        <div id="sectionCard">
-      <Selection id='selection'
-            pokemon={this.state.pokemon}
-            single={this.state.single}
-            name={this.state.name}
+
+        <Selection
+          id="selection"
+          close={this.closePerson}
+          edit={this.editName}
+          pokemon={this.state.pokemon}
         />
+        <div id="viewer">
+          <Viewer
+            selected={this.state.pokemon}
+            edit={this.editName}
+            close={this.closePerson}
+            add={this.getSelected}
+          />
         </div>
       </div>
     );
   }
 }
-
 export default App;
